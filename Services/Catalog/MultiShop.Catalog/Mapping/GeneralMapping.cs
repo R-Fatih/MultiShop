@@ -3,7 +3,6 @@ using MultiShop.Catalog.Dtos.CategoryDtos;
 using MultiShop.Catalog.Dtos.ProductDetailDtos;
 using MultiShop.Catalog.Dtos.ProductDtos;
 using MultiShop.Catalog.Dtos.ProductImageDtos;
-using MultiShop.Catalog.Dtos.ProductImageDtos.
 
 
 
