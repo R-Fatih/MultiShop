@@ -1,0 +1,62 @@
+﻿@using MultiShop.DtoLayer.CatalogDtos.CategoryDtos
+@model List<ResultCategoryDto>
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	@await Component.InvokeAsync("_AdminLayoutMainSectionComponentPartial")
+
+	<!-- Main content -->
+	<section class="content container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="chart-box">
+					<h4>@ViewBag.title2</h4>
+					<div id="example_filter" class="dataTables_filter pull-right">
+						<input class="form-control" id="placeholderInput" placeholder="Search" type="text">
+					</div>
+					<table class="table table-responsive">
+						<thead>
+							<tr>
+								<th class="sortable">#</th>
+								<th class="sortable">Kategori Adı#</th>
+								<th>Kategoriye ait ürünler</th>
+								<th>Sil</th>
+								<th>Güncelle</th>
+
+							</tr>
+						</thead>
+						@foreach (var item in Model)
+						{
+							<tr>
+
+
+								<td class="text-truncate">@item.CategoryId</td>
+								<td class="text-truncate">@item.CategoryName</td>
+								<td class="text-truncate"><a class="btn btn-danger">Kategoriye ait ürünler</a> </td>
+								<td class="text-truncate"><a class="btn btn-warning">Sil</a></td>
+								<td class="text-truncate"><a class="btn btn-success">Güncelle</a></td>
+							</tr>
+						}
+
+
+					</table>
+					<a class="btn btn-primary">Yeni kategori girişi</a>
+					@* <ul class="pagination m-bot-0">
+					<li> <a href="#" aria-label="Previous"> <span aria-hidden="true">«</span> </a> </li>
+					<li><a href="#">1</a></li>
+					<li><a href="#">2</a></li>
+					<li><a href="#">3</a></li>
+					<li><a href="#">4</a></li>
+					<li><a href="#">5</a></li>
+					<li> <a href="#" aria-label="Next"> <span aria-hidden="true">»</span> </a> </li>
+					</ul> *@
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- content -->
+</div>
