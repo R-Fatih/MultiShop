@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/UILayout/_UILayout.cshtml";
+}
+
+<!-- Breadcrumb Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <div class="col-12">
+            <nav class="breadcrumb bg-light mb-30">
+                <a class="breadcrumb-item text-dark" href="#">Ana sayfa</a>
+                <a class="breadcrumb-item text-dark" href="#">Ürünler</a>
+                <span class="breadcrumb-item active">Ürün listesi</span>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Shop Start -->
+<div class="container-fluid">
+    <div class="row px-xl-5">
+        <!-- Shop Sidebar Start -->
+        @await Component.InvokeAsync("_ProductListSidebarComponentPartial")
+        <!-- Shop Sidebar End -->
+        <!-- Shop Product Start -->
+        <div class="col-lg-9 col-md-8">
+            <div class="row pb-3">
+                @await Component.InvokeAsync("_ProductListSortingFilterComponentPartial")
+                @await Component.InvokeAsync("_ProductListProductComponentPartial")
+                @await Component.InvokeAsync("_ProductListPaginationComponentPartial")
+
+         
+
+               
+
+            </div>
+        </div>
+        <!-- Shop Product End -->
+    </div>
+</div>
+<!-- Shop End -->
