@@ -1,8 +1,8 @@
-﻿@using MultiShop.DtoLayer.CatalogDtos.CategoryDtos
-@model CreateCategoryDto
+﻿@using MultiShop.DtoLayer.CatalogDtos.SpecialOfferDtos
+@model UpdateSpecialOfferDto
 @{
-	ViewData["Title"] = "CreateCategory";
-	Layout = "~/Areas/Admin/Views/AdminLayout/_AdminLayout.cshtml";
+    ViewData["Title"] = "CreateSpecialOffer";
+    Layout = "~/Areas/Admin/Views/AdminLayout/_AdminLayout.cshtml";
 }
 
 <div class="content-wrapper">
@@ -17,20 +17,26 @@
 					<h4>@ViewBag.title2</h4>
 					<div id="example_filter" class="dataTables_filter pull-right">
 					</div>
-
+					
 					<form method="post">
+						<input asp-for="SpecialOfferId" type="hidden" />
 						<div class="form-group">
-							<label>Category Name</label>
-							<input asp-for="CategoryName" type="text" class="form-control" />
+							<label>Title</label>
+							<input asp-for="Title" type="text" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label>Description</label>
+							<input asp-for="SubTitle" type="text" class="form-control" />
 						</div>
 						<div class="form-group">
 							<label>Image Url</label>
 							<input asp-for="ImageUrl" type="text" class="form-control" />
-							</div>
+						</div>	
+
 						<button class="btn btn-primary">Kaydet</button>
 					</form>
 
-
+					
 
 				</div>
 			</div>

@@ -1,5 +1,5 @@
-﻿@using MultiShop.DtoLayer.CatalogDtos.CategoryDtos
-@model List<ResultCategoryDto>
+﻿@using MultiShop.DtoLayer.CatalogDtos.FeatureDtos
+@model List<ResultFeatureDto>
 @{
 	ViewData["Title"] = "Index";
 	Layout = "~/Areas/Admin/Views/AdminLayout/_AdminLayout.cshtml";
@@ -23,8 +23,8 @@
 						<thead>
 							<tr>
 								<th class="sortable">#</th>
-								<th class="sortable">Kategori Adı</th>
-								<th>Resim</th>
+								<th class="sortable">Başlık</th>
+								<th>İkon</th>
 								<th>Sil</th>
 								<th>Güncelle</th>
 
@@ -36,17 +36,17 @@
 
 
 								<td class="text-truncate">@count</td>
-								<td class="text-truncate">@item.CategoryName</td>
-								<td class="text-truncate"><img src="@item.ImageUrl" width="100" height="100" /></td>
-								<td class="text-truncate"><a href="/Admin/Category/RemoveCategory/@item.CategoryId" class="btn btn-danger">Sil</a></td>
-								<td class="text-truncate"><a href="/Admin/Category/UpdateCategory/@item.CategoryId" class="btn btn-success">Güncelle</a></td>
+								<td class="text-truncate">@item.Title</td>
+								<td class="text-truncate">@item.Icon</td>
+								<td class="text-truncate"><a href="/Admin/Feature/RemoveFeature/@item.FeatureId" class="btn btn-danger">Sil</a></td>
+								<td class="text-truncate"><a href="/Admin/Feature/UpdateFeature/@item.FeatureId" class="btn btn-success">Güncelle</a></td>
 							</tr>
 							count++;
 						}
 
 
 					</table>
-					<a href="/Admin/Category/CreateCategory/" class="btn btn-primary">Yeni kategori girişi</a>
+					<a href="/Admin/Feature/CreateFeature/" class="btn btn-primary">Yeni feature girişi</a>
 					
 
 				</div>
