@@ -28,6 +28,10 @@ namespace MultiShop.IdentityServer
          {
              Scopes = { "CargoFullPermission" }
          },
+         new ApiResource("ResourceBasket")
+         {
+             Scopes = { "BasketFullPermission" }
+         },
          new ApiResource(IdentityServerConstants.LocalApi.ScopeName)
         };
         public static IEnumerable<IdentityResource> IdentityResources =>
@@ -47,7 +51,7 @@ namespace MultiShop.IdentityServer
                 new ApiScope("OrderFullPermission", "Order Full Permission"),
                 new ApiScope("OrderReadPermission", "Order Read Permission"),
                 new ApiScope("CargoFullPermission", "Cargo Full Permission"),
-
+                new ApiScope("BasketFullPermission", "Basket Full Permission"),
                 new ApiScope(IdentityServerConstants.LocalApi.ScopeName)
             };
         public static IEnumerable<Client> Clients => new Client[] {
@@ -63,7 +67,7 @@ namespace MultiShop.IdentityServer
         {
             ClientId="MultiShopManagerId",
             ClientName="Multi Shop Manager User",
-            AllowedGrantTypes=GrantTypes.ClientCredentials,
+            AllowedGrantTypes=GrantTypes.ResourceOwnerPassword,
             ClientSecrets={new Secret("multishopsecret".Sha256())},
             AllowedScopes={ "CatalogFullPermission", "DiscountFullPermission", "OrderFullPermission" }
         },
@@ -71,9 +75,9 @@ namespace MultiShop.IdentityServer
         {
             ClientId="MultiShopAdminId",
             ClientName="Multi Shop Admin User",
-            AllowedGrantTypes=GrantTypes.ClientCredentials,
+            AllowedGrantTypes=GrantTypes.ResourceOwnerPassword,
             ClientSecrets={new Secret("multishopsecret".Sha256())},
-            AllowedScopes={"CatalogFullPermission","DiscountFullPermission","OrderFullPermission","CargoFullPermission",
+            AllowedScopes={"CatalogFullPermission","DiscountFullPermission","OrderFullPermission","CargoFullPermission","BasketFullPermission",
 
                 IdentityServerConstants.LocalApi.ScopeName,
                 IdentityServerConstants.StandardScopes.OpenId,
