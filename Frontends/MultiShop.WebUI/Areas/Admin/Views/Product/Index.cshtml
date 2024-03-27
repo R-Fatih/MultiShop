@@ -1,5 +1,5 @@
-﻿@using MultiShop.DtoLayer.CatalogDtos.CategoryDtos
-@model List<ResultCategoryDto>
+﻿@using MultiShop.DtoLayer.CatalogDtos.ProductDtos
+@model List<ResultProductWithCategoryDto>
 @{
 	ViewData["Title"] = "Index";
 	Layout = "~/Areas/Admin/Views/AdminLayout/_AdminLayout.cshtml";
@@ -23,7 +23,9 @@
 						<thead>
 							<tr>
 								<th class="sortable">#</th>
-								<th class="sortable">Kategori Adı</th>
+								<th class="sortable">Ürün Adı</th>
+								<th class="sortable">Fiyatı</th>
+								<th class="sortable">Kategori</th>
 								<th>Sil</th>
 								<th>Güncelle</th>
 
@@ -35,16 +37,18 @@
 
 
 								<td class="text-truncate">@count</td>
+								<td class="text-truncate">@item.ProductName</td>
+								<td class="text-truncate">@item.ProductPrice</td>
 								<td class="text-truncate">@item.CategoryName</td>
-								<td class="text-truncate"><a href="/Admin/Category/RemoveCategory/@item.CategoryId" class="btn btn-danger">Sil</a></td>
-								<td class="text-truncate"><a href="/Admin/Category/UpdateCategory/@item.CategoryId" class="btn btn-success">Güncelle</a></td>
+								<td class="text-truncate"><a href="/Admin/Product/RemoveProduct/@item.ProductId" class="btn btn-danger">Sil</a></td>
+								<td class="text-truncate"><a href="/Admin/Product/UpdateProduct/@item.ProductId" class="btn btn-success">Güncelle</a></td>
 							</tr>
 							count++;
 						}
 
 
 					</table>
-					<a href="/Admin/Category/CreateCategory/" class="btn btn-primary">Yeni kategori girişi</a>
+					<a href="/Admin/Product/CreateProduct/" class="btn btn-primary">Yeni ürün girişi</a>
 					
 
 				</div>
