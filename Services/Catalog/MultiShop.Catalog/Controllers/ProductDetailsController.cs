@@ -27,7 +27,7 @@ namespace MultiShop.Catalog.Controllers
             var productDetail = await _productDetailService.GetByIdProductDetailAsync(id);
             if (productDetail == null)
             {
-                return NotFound();
+                return Ok();
             }
             return Ok(productDetail);
         }
@@ -49,5 +49,15 @@ namespace MultiShop.Catalog.Controllers
             await _productDetailService.DeleteProductDetailAsync(id);
             return Ok("ProductDetail deleted succesfully");
         }
+        [HttpGet("GetProductDetailByProductId")]
+        public async Task<IActionResult> GetProductDetailByProductId(string productId)
+        {
+			var productDetail = await _productDetailService.GetProductDetailByProductId(productId);
+			if (productDetail == null)
+			{
+				return Ok("{}");
+			}
+			return Ok(productDetail);
+		}
     }
 }

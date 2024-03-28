@@ -4,3 +4,4 @@ Discount → 7149
 Order → 7150
 Cargo → 7151
 Basket → 7152
+Comment → 7153

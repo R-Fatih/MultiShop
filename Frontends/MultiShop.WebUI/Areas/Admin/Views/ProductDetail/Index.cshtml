@@ -1,0 +1,56 @@
+﻿@using MultiShop.DtoLayer.CatalogDtos.ProductDetailDtos
+@model ResultProductDetailDto
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/AdminLayout/_AdminLayout.cshtml";
+	int count = 1;
+}
+
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	@await Component.InvokeAsync("_AdminLayoutMainSectionComponentPartial")
+
+	<!-- Main content -->
+	<section class="content container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="chart-box">
+					<h4>@ViewBag.title2</h4>
+					<div id="example_filter" class="dataTables_filter pull-right">
+						<input class="form-control" id="placeholderInput" placeholder="Search" type="text">
+					</div>
+					<table class="table table-responsive">
+						<thead>
+							<tr>
+								<th class="sortable">#</th>
+								<th>Bilgi</th>
+								<th>Açıklama</th>
+								<th>Sil</th>
+								<th>Güncelle</th>
+
+							</tr>
+						</thead>
+						
+							<tr>
+
+
+								<td class="text-truncate">@count</td>
+								<td class="text-truncate">@Model.ProductInfo</td>
+							<td class="text-truncate">@Model.ProductDescription</td>
+							<td class="text-truncate"><a href="/Admin/ProductDetail/RemoveProductDetail/@Model.ProductDetailId" class="btn btn-danger">Sil</a></td>
+							<td class="text-truncate"><a href="/Admin/ProductDetail/UpdateProductDetail/@Model.ProductDetailId" class="btn btn-success">Güncelle</a></td>
+							</tr>
+							count++;
+						
+
+
+					</table>
+					<a href="/Admin/ProductDetail/CreateProductDetail/@ViewBag.prid" class="btn btn-primary">Yeni resim girişi</a>
+					
+
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- content -->
+</div>

@@ -1,0 +1,39 @@
+﻿@using MultiShop.DtoLayer.CatalogDtos.ProductImageDtos
+@model CreateProductImageDto
+@{
+	ViewData["Title"] = "CreateProductImage";
+	Layout = "~/Areas/Admin/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	@await Component.InvokeAsync("_AdminLayoutMainSectionComponentPartial")
+
+	<!-- Main content -->
+	<section class="content container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="chart-box">
+					<h4>@ViewBag.title2</h4>
+					<div id="example_filter" class="dataTables_filter pull-right">
+					</div>
+
+					<form method="post">
+						<input asp-for=ProductId type="hidden"/>
+						<div class="form-group">
+							<label>Image Url</label>
+							<input asp-for="ImageUrl" type="text" class="form-control" />
+						</div>	
+
+						<button class="btn btn-primary">Kaydet</button>
+					</form>
+
+
+
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- content -->
+</div>
+

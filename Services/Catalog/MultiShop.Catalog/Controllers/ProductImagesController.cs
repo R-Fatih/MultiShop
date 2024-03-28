@@ -49,5 +49,11 @@ namespace MultiShop.Catalog.Controllers
             await _productImageService.DeleteProductImageAsync(id);
             return Ok("ProductImage deleted succesfully");
         }
+        [HttpGet("GetProductImagesByProductId")]
+        public async Task<IActionResult> GetProductImagesByProductId(string productId)
+        {
+			var productImages = await _productImageService.GetProductImagesByProductIdAsync(productId);
+			return Ok(productImages);
+		}
     }
 }

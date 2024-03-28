@@ -26,6 +26,8 @@
 								<th class="sortable">Ürün Adı</th>
 								<th class="sortable">Fiyatı</th>
 								<th class="sortable">Kategori</th>
+								<th>Detaylar</th>
+								<th>Resimler</th>
 								<th>Sil</th>
 								<th>Güncelle</th>
 
@@ -40,6 +42,8 @@
 								<td class="text-truncate">@item.ProductName</td>
 								<td class="text-truncate">@item.ProductPrice</td>
 								<td class="text-truncate">@item.CategoryName</td>
+								<td class="text-truncate"><a href="/Admin/ProductDetail/Index/@item.ProductId" class="btn btn-primary">Detaylar</a></td>
+								<td class="text-truncate"><a href="/Admin/ProductImage/Index/@item.ProductId" class="btn btn-warning">Resimler</a></td>
 								<td class="text-truncate"><a href="/Admin/Product/RemoveProduct/@item.ProductId" class="btn btn-danger">Sil</a></td>
 								<td class="text-truncate"><a href="/Admin/Product/UpdateProduct/@item.ProductId" class="btn btn-success">Güncelle</a></td>
 							</tr>
