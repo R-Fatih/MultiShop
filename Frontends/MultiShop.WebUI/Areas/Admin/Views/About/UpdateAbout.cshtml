@@ -1,0 +1,51 @@
+﻿@using MultiShop.DtoLayer.CatalogDtos.AboutDtos
+@model UpdateAboutDto
+@{
+    ViewData["Title"] = "CreateAbout";
+    Layout = "~/Areas/Admin/Views/AdminLayout/_AdminLayout.cshtml";
+}
+
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	@await Component.InvokeAsync("_AdminLayoutMainSectionComponentPartial")
+
+	<!-- Main content -->
+	<section class="content container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="chart-box">
+					<h4>@ViewBag.title2</h4>
+					<div id="example_filter" class="dataTables_filter pull-right">
+					</div>
+					
+					<form method="post">
+						<input asp-for="AboutId" type="hidden" />
+						<div class="form-group">
+							<label>Description</label>
+							<input asp-for="Description" type="text" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label>Email</label>
+							<input asp-for="Email" type="text" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label>Phone</label>
+							<input asp-for="Phone" type="text" class="form-control" />
+						</div>
+						<div class="form-group">
+							<label>Address</label>
+							<input asp-for="Address" type="text" class="form-control" />
+						</div>
+
+						<button class="btn btn-primary">Kaydet</button>
+					</form>
+
+					
+
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- content -->
+</div>
+

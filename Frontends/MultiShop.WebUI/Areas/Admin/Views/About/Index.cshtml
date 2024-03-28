@@ -1,0 +1,62 @@
+﻿@using MultiShop.DtoLayer.CatalogDtos.AboutDtos
+@model List<ResultAboutDto>
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/AdminLayout/_AdminLayout.cshtml";
+	int count = 1;
+}
+
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	@await Component.InvokeAsync("_AdminLayoutMainSectionComponentPartial")
+
+	<!-- Main content -->
+	<section class="content container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="chart-box">
+					<h4>@ViewBag.title2</h4>
+					<div id="example_filter" class="dataTables_filter pull-right">
+						<input class="form-control" id="placeholderInput" placeholder="Search" type="text">
+					</div>
+					<table class="table table-responsive">
+						<thead>
+							<tr>
+								<th class="sortable">#</th>
+								<th class="sortable">Adres</th>
+								<th class="sortable">Açıklama</th>
+								<th>Telefon</th>
+								<th>Mail</th>
+								<th>Sil</th>
+								<th>Güncelle</th>
+
+							</tr>
+						</thead>
+						@foreach (var item in Model)
+						{
+							<tr>
+
+
+								<td class="text-truncate">@count</td>
+								<td class="text-truncate">@item.Address</td>
+								<td class="text-truncate">@item.Description</td>
+								<td class="text-truncate">@item.Phone</td>
+								<td class="text-truncate">@item.Email</td>
+
+								<td class="text-truncate"><a href="/Admin/About/RemoveAbout/@item.AboutId" class="btn btn-danger">Sil</a></td>
+								<td class="text-truncate"><a href="/Admin/About/UpdateAbout/@item.AboutId" class="btn btn-success">Güncelle</a></td>
+							</tr>
+							count++;
+						}
+
+
+					</table>
+					<a href="/Admin/About/CreateAbout/" class="btn btn-primary">Yeni özel teklif girişi</a>
+					
+
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- content -->
+</div>
