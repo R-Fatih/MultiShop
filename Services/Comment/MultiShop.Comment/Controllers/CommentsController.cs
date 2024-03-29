@@ -49,5 +49,10 @@ namespace MultiShop.Comment.Controllers
         {
             return Ok(await _context.UserComments.FindAsync(id));
         }
+        [HttpGet("GetByProductId")]
+        public async Task<IActionResult> GetByProductIdAsync(string productId)
+        {
+			return Ok(await _context.UserComments.Where(x => x.ProductId == productId&&x.Status==true).ToListAsync());
+		}
     }
 }

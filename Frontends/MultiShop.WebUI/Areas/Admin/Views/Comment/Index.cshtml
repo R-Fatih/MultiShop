@@ -1,8 +1,63 @@
-﻿
+﻿@using MultiShop.DtoLayer.CommentsDtos
+@model List<ResultCommentDto>
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Areas/Admin/Views/AdminLayout/_AdminLayout.cshtml";
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/AdminLayout/_AdminLayout.cshtml";
+	int count = 1;
 }
 
-<h1>Index</h1>
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	@await Component.InvokeAsync("_AdminLayoutMainSectionComponentPartial")
 
+	<!-- Main content -->
+	<section class="content container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="chart-box">
+					<h4>@ViewBag.title2</h4>
+					<div id="example_filter" class="dataTables_filter pull-right">
+						<input class="form-control" id="placeholderInput" placeholder="Search" type="text">
+					</div>
+					<table class="table table-responsive">
+						<thead>
+							<tr>
+								<th class="sortable">#</th>
+								<th class="sortable">Kullanıcı</th>
+								<th class="sortable">Yorum</th>
+								<th>Rayting</th>
+								<th>Tarih</th>
+								<th>Durum</th>
+								<th>Sil</th>
+								<th>Güncelle</th>
+
+							</tr>
+						</thead>
+						@foreach (var item in Model)
+						{
+							<tr>
+
+
+								<td class="text-truncate">@count</td>
+								<td class="text-truncate">@item.NameSurname</td>
+								<td class="text-truncate">@item.CommentDetail</td>
+								<td class="text-truncate">@item.Rating</td>
+								<td class="text-truncate">@item.CreatedDate</td>
+								<td class="text-truncate">@item.Status</td>
+								<td class="text-truncate"><a href="/Admin/Comment/RemoveComment/@item.UserCommentId" class="btn btn-danger">Sil</a></td>
+								<td class="text-truncate"><a href="/Admin/Comment/UpdateComment/@item.UserCommentId" class="btn btn-success">Güncelle</a></td>
+							</tr>
+							count++;
+						}
+
+
+					</table>
+
+					
+
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- content -->
+</div>
