@@ -19,7 +19,7 @@
 					</div>
 
 					<form method="post">
-						<input asp-for=ProductId type="hidden"/>
+						<input asp-for=ProductId value="@TempData["id"]" type="hidden" />
 						<div class="form-group">
 							<label>Image Url</label>
 							<input asp-for="ImageUrl" type="text" class="form-control" />

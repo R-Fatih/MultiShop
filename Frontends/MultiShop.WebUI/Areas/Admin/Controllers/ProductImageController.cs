@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MultiShop.DtoLayer.CatalogDtos.CategoryDtos;
 using MultiShop.DtoLayer.CatalogDtos.ProductImageDtos;
+using MultiShop.WebUI.Services.CatalogServices.ProductImageServices;
 using Newtonsoft.Json;
 using System.Text;
 
@@ -11,12 +12,13 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
 	[Route("Admin/ProductImage")]
 	public class ProductImageController : Controller
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IProductImageService _productImageService;
 
-        public ProductImageController(IHttpClientFactory httpClientFactory)
+        public ProductImageController(IProductImageService productImageService)
         {
-            _httpClientFactory = httpClientFactory;
+            _productImageService = productImageService;
         }
+
         [Route("Index/{id}")]
         public async Task<IActionResult> Index(string id)
         {
@@ -26,15 +28,11 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             ViewBag.title2= "Resimler";
 			ViewBag.prid = id;
 
-			var client = _httpClientFactory.CreateClient();
-            var response = await client.GetAsync($"https://localhost:7148/api/ProductImages/GetProductImagesByProductId?productId={id}");
-            if (response.IsSuccessStatusCode)
-            {
-                var jsonData = await response.Content.ReadAsStringAsync();
-                var values=JsonConvert.DeserializeObject<List<ResultProductImageDto>>(jsonData);
+			
 
+            var values = await _productImageService.GetProductImagesByProductIdAsync(id);
 				return View(values);
-            }
+            
 
             return View();
         }
@@ -46,6 +44,7 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
             ViewBag.v2 = "Resimler";
             ViewBag.v3 = "Resimler";
             ViewBag.title2 = "Resimler";
+            TempData["id"] = id;
             return View();
         }
         [HttpPost]
@@ -53,58 +52,40 @@ namespace MultiShop.WebUI.Areas.Admin.Controllers
 
 		public async Task<IActionResult> CreateProductImage(CreateProductImageDto createProductImageDto,string id)
         {
-			var client = _httpClientFactory.CreateClient();
-            createProductImageDto.ProductId = id;
-			var jsonData = JsonConvert.SerializeObject(createProductImageDto);
-			var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-			var response = await client.PostAsync("https://localhost:7148/api/ProductImages", stringContent);
-			if (response.IsSuccessStatusCode)
-            {
+
+			id= TempData["id"].ToString();
+         await   _productImageService.CreateProductImageAsync(createProductImageDto);
 				return RedirectToAction("Index","ProductImage",new {area="Admin",id=id});
-			}
+			
 			return View();
 		}
 
 		[Route("RemoveProductImage/{id}")]
 		public async Task<IActionResult> RemoveProductImage(string id)
         {
-            var client=_httpClientFactory.CreateClient();
-            var response=await client.GetAsync($"https://localhost:7148/api/ProductImages/Delete/{id}");
-            if (response.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index","ProductImage",new {area="Admin"});
-            }
-            return View();
+            await _productImageService.DeleteProductImageAsync(id);
+			return RedirectToAction("Index", "ProductImage", new { area = "Admin", id = id });
+
+			return View();
         }
         [HttpGet]
 		[Route("UpdateProductImage/{id}")]
 		public async Task<IActionResult> UpdateProductImage(string id)
         {
-			var client=_httpClientFactory.CreateClient();
-			var response=await client.GetAsync($"https://localhost:7148/api/ProductImages/{id}");
-			if (response.IsSuccessStatusCode)
-            {
-				var jsonData=await response.Content.ReadAsStringAsync();
-				var values=JsonConvert.DeserializeObject<UpdateProductImageDto>(jsonData);
-
-
+			
+            var values = await _productImageService.GetByIdProductImageAsync(id);
 				return View(values);
-			}
+			
 			return View();
 		}
 		[HttpPost]
 		[Route("UpdateProductImage/{id}")]
 		public async Task<IActionResult> UpdateProductImage(UpdateProductImageDto updateProductImageDto)
         {
-            		var client=_httpClientFactory.CreateClient();
-            var jsonData=JsonConvert.SerializeObject(updateProductImageDto);
-            var stringContent=new StringContent(jsonData,Encoding.UTF8,"application/json");
-            var response=await client.PostAsync("https://localhost:7148/api/ProductImages/Update",stringContent);
-            if (response.IsSuccessStatusCode)
-            {
-				return RedirectToAction("Index","ProductImage",new {area="Admin"});
-			}
-            return View();
+            await _productImageService.UpdateProductImageAsync(updateProductImageDto);
+			return RedirectToAction("Index", "ProductImage", new { area = "Admin", id = updateProductImageDto.ProductId });
+
+			return View();
         }
 
 

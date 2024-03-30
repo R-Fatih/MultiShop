@@ -1,0 +1,16 @@
+﻿@model UserDetailViewModel
+@{
+    Layout = null;
+}
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+<div class="container">
+
+    <br /><br /><br />
+    <h3>Profil bilgisi</h3>
+    <div class="alert alert-info">Kullanıcı Id:@Model.Id</div>
+    <div class="alert alert-info">Kullanıcı Adı:@Model.Username</div>
+    <div class="alert alert-info">Kullanıcı Ad syad:@Model.Name @Model.Surname</div>
+    <div class="alert alert-info">Kullanıcı mail:@Model.Email</div>
+
+</div>

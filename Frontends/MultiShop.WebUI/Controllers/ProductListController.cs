@@ -1,16 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MultiShop.DtoLayer.CommentsDtos;
+using MultiShop.WebUI.Services.CatalogServices.CommentServices;
 
 namespace MultiShop.WebUI.Controllers
 {
     public class ProductListController : Controller
     {
-        private readonly IHttpClientFactory _clientFactory;
-
-		public ProductListController(IHttpClientFactory clientFactory)
-		{
-			_clientFactory = clientFactory;
-		}
+        
+        private readonly ICommentService _commentService;
 
 		public IActionResult Index(string id)
         {
@@ -37,12 +34,11 @@ namespace MultiShop.WebUI.Controllers
             createCommentDto.Status = false;
             createCommentDto.ImageUrl = "test";
             createCommentDto.CreatedDate = DateTime.UtcNow.AddHours(3);
-            var client = _clientFactory.CreateClient();
-            var response = await client.PostAsJsonAsync("https://localhost:7153/api/Comments", createCommentDto);
-            if (response.IsSuccessStatusCode)
-            {
+            
+
+            await _commentService.CreateCommentAsync(createCommentDto);
                 return RedirectToAction("Index", "Default");
-            }
+            
             return View();
 		}
     }
