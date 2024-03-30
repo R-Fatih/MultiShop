@@ -7,7 +7,7 @@ using MultiShop.Basket.Services;
 
 namespace MultiShop.Basket.Controllers
 {
-    [Authorize]
+    [AllowAnonymous]
     [Route("api/[controller]")]
     [ApiController]
     public class BasketsController : ControllerBase

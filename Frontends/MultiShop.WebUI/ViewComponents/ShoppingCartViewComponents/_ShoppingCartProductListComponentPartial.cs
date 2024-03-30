@@ -1,12 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MultiShop.WebUI.Services.BasketServices;
+using MultiShop.WebUI.Services.CatalogServices.ProductServices;
 
 namespace MultiShop.WebUI.ViewComponents.ShoppingCartViewComponents
 {
     public class _ShoppingCartProductListComponentPartial:ViewComponent
     {
-        public IViewComponentResult Invoke()
+		private readonly IBasketService _basketService;
+
+		public _ShoppingCartProductListComponentPartial( IBasketService basketService)
+		{
+			_basketService = basketService;
+		}
+		public async Task<IViewComponentResult> InvokeAsync()
         {
-            return View();
+			var values = await _basketService.GetBasket();
+			return View(values);
+			return View();
         }
     }
 }

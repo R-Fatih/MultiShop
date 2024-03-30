@@ -14,14 +14,13 @@ namespace MultiShop.WebUI.Services.BasketServices
 		}
 		public async Task<BasketTotalDto> GetBasket()
 		{
-			
-			
-			return await _httpClient.GetFromJsonAsync<BasketTotalDto>($"baskets");
-		}
+
+            return await _httpClient.GetFromJsonAsync<BasketTotalDto>($"baskets");
+        }
 
 		public async Task SaveBasket(BasketTotalDto basketTotalDto)
 		{
-			await _httpClient.PostAsJsonAsync("baskets", basketTotalDto);
+            await _httpClient.PostAsJsonAsync<BasketTotalDto>("baskets", basketTotalDto);
 		}
 
 		public async Task DeleteBasket()
@@ -52,13 +51,9 @@ namespace MultiShop.WebUI.Services.BasketServices
 		{
 			var values = await GetBasket();
 			var deletedItem = values.BasketItems.FirstOrDefault(x => x.ProductId == productId);
-			if (deletedItem != null)
-			{
-				values.BasketItems.Remove(deletedItem);
-				await SaveBasket(values);
-				return true;
-			}
-			return false;
+			var result = values.BasketItems.Remove(deletedItem);
+			await SaveBasket(values);
+			return true;
 		}
 	}
    

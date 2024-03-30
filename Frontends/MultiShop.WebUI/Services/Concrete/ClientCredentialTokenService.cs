@@ -36,10 +36,10 @@ namespace MultiShop.WebUI.Services.Concrete
             });
             var clientCredentialTokenRequest = new ClientCredentialsTokenRequest
             {
-                Address = discoveryDocument.TokenEndpoint,
-                ClientId = _clientSettings.MultiShopVisitorClient.ClientId,
-                ClientSecret = _clientSettings.MultiShopVisitorClient.ClientSecret,
-            };
+				ClientId = _clientSettings.MultiShopVisitorClient.ClientId,
+				ClientSecret = _clientSettings.MultiShopVisitorClient.ClientSecret,
+				Address = discoveryDocument.TokenEndpoint
+			};
             var token2 = await _httpClient.RequestClientCredentialsTokenAsync(clientCredentialTokenRequest);
             await _clientAccessTokenCache.SetAsync("multishoptoken", token2.AccessToken, token2.ExpiresIn);
             return token2.AccessToken;
