@@ -40,7 +40,15 @@ namespace MultiShop.Discount.Services
             return values.ToList();
         }
 
-        public async Task<ResultCouponDto> GetCouponByIdAsync(int couponId)
+		public Task<ResultCouponDto> GetCodeDetailByCode(string code)
+		{
+            string query = "SELECT * FROM Coupons WHERE Code=@Code";
+            var parameters = new DynamicParameters();
+            parameters.Add("@Code", code);
+            return _dapperContext.CreateConnection().QueryFirstOrDefaultAsync<ResultCouponDto>(query, parameters);
+		}
+
+		public async Task<ResultCouponDto> GetCouponByIdAsync(int couponId)
         {
             string query = "SELECT * FROM Coupons WHERE CouponId=@CouponId";
             var parameters = new DynamicParameters();
