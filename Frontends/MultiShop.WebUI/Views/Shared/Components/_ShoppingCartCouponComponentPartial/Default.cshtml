@@ -3,9 +3,11 @@
 <div class="col-lg-4">
     <form class="mb-30" asp-controller="Discount" asp-action="ConfirmDiscountCoupon">
         <div class="input-group">
-            <input name="Code" type="text" class="form-control border-0 p-4" placeholder="Kupon kodu girin">
+            <input name="Code" value="@ViewBag.code" type="text" class="form-control border-0 p-4" placeholder="Kupon kodu girin">
             <div class="input-group-append">
                 <button class="btn btn-primary">Kodu onayla</button>
+                <br />
+                <h3> </h3>
             </div>
         </div>
     </form>
@@ -14,7 +16,7 @@
         <div class="border-bottom pb-2">
             <div class="d-flex justify-content-between mb-3">
                 <h6>Kdv tutarı</h6>
-                <h6>@(Convert.ToInt32(Model.TotalPrice) * 0.2)</h6>
+                <h6>@(Convert.ToInt32(Model.TotalPrice) * 0.2)₺</h6>
             </div>
             <div class="d-flex justify-content-between">
                 <h6 class="font-weight-medium">Kargo</h6>
@@ -23,8 +25,16 @@
         </div>
         <div class="pt-2">
             <div class="d-flex justify-content-between mt-2">
-                <h5>Total</h5>
-                <h5>@(Model.TotalPrice+100)₺</h5>
+                <h6 class="font-weight-medium">Toplam</h6>
+                <h6 class="font-weight-medium">@(Model.TotalPrice + 100)₺</h6>
+            </div>
+            <div class="d-flex justify-content-between mt-2">
+                <h6 class="font-weight-medium">İndirim oranı</h6>
+                <h6 class="font-weight-medium">@ViewBag.discrate%</h6>
+            </div>
+            <div class="d-flex justify-content-between mt-2">
+                <h5>İndirimli yeni fiyat</h5>
+                <h5>@ViewBag.newprice₺</h5>
             </div>
             <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Ödeme ekranı</button>
         </div>

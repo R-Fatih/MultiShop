@@ -16,9 +16,11 @@ namespace MultiShop.WebUI.Controllers
 			_basketService = basketService;
 		}
 
-		public async Task<IActionResult> Index()
+		public async Task<IActionResult> Index(string code,int discrate,decimal newprice)
 		{
-			
+			ViewBag.code=code;
+			ViewBag.discrate=discrate;
+			ViewBag.newprice=newprice;
 			return View();
 		}
 		public async Task<IActionResult> AddBasketItem(string id)

@@ -15,7 +15,8 @@ namespace MultiShop.WebUI.Services.BasketServices
 		public async Task<BasketTotalDto> GetBasket()
 		{
 
-            return await _httpClient.GetFromJsonAsync<BasketTotalDto>($"baskets");
+            
+			return await _httpClient.GetFromJsonAsync<BasketTotalDto>($"baskets");
         }
 
 		public async Task SaveBasket(BasketTotalDto basketTotalDto)
