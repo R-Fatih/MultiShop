@@ -26,8 +26,15 @@ namespace MultiShop.Order.Application.Features.CQRS.Handlers.AddressHandlers
                 UserId = request.UserId,
 District = request.District,
 City = request.City,
-Detail = request.Detail,
-
+Detail1 = request.Detail1,
+Detail2 = request.Detail2,
+Country = request.Country,
+Description = request.Description,
+Email = request.Email,
+Name = request.Name,
+Phone = request.Phone,
+Surname = request.Surname,
+ZipCode = request.ZipCode
 });
         }
     }

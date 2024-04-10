@@ -25,6 +25,14 @@ namespace MultiShop.Order.Application.Features.CQRS.Handlers.AddressHandlers
 values.UserId = request.UserId;
 values.District = request.District;
 values.City = request.City;
-values.Detail = request.Detail;
+values.Detail1 = request.Detail1;
+values.Detail2 = request.Detail2;  
+            values.Country = request.Country;
+            values.Description = request.Description;
+            values.Email = request.Email;
+            values.Name = request.Name;
+            values.Phone = request.Phone;
+            values.Surname = request.Surname;
+            values.ZipCode = request.ZipCode;
 
 await _repository.UpdateAsync(values);}}}

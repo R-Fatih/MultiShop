@@ -4,5 +4,10 @@
     Layout = "~/Views/UILayout/_UILayout.cshtml";
 }
 
-<h1>Index</h1>
+  <!-- Checkout Start -->
+
+            @await Component.InvokeAsync("_OrderBillingAddressComponentPartial")
+            
+  
+    <!-- Checkout End -->
 
