@@ -1,0 +1,35 @@
+﻿@using MultiShop.DtoLayer.CargoDtos.CargoCustomerDtos
+@model ResultCargoCustomerByIdDto
+@{
+    ViewData["Title"] = "UserAddressInfo";
+    Layout = "~/Areas/Admin/Views/AdminLayout/_AdminLayout.cshtml";
+	int count = 1;
+
+}
+
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	@await Component.InvokeAsync("_AdminLayoutMainSectionComponentPartial")
+
+	<!-- Main content -->
+	<section class="content container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="chart-box">
+					<h4>@ViewBag.title2</h4>
+					<div class="alert alert-info">Kullanıcı Id:@Model.CargoCustomerId</div>
+					<div class="alert alert-info">Kullanıcı Ad soyad:@Model.Name @Model.Surname</div>
+					<div class="alert alert-info">Kullanıcı mail:@Model.Email</div>
+					<div class="alert alert-info">Kullanıcı telefon:@Model.Phone</div>
+					<div class="alert alert-info">Kullanıcı ilçe:@Model.District</div>
+					<div class="alert alert-info">Kullanıcı il:@Model.City</div>
+					<div class="alert alert-info">Kullanıcı adres:@Model.Address</div>
+
+
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- content -->
+</div>
+

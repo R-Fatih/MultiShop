@@ -1,4 +1,5 @@
-﻿using MultiShop.WebUI.Models;
+﻿using MultiShop.DtoLayer.IdentityDtos.UserDtos;
+using MultiShop.WebUI.Models;
 using MultiShop.WebUI.Services.Interfaces;
 using System.Net.Http;
 
@@ -17,5 +18,10 @@ namespace MultiShop.WebUI.Services.Concrete
         {
             return await _client.GetFromJsonAsync<UserDetailViewModel>("/api/users/getuser");
         }
-    }
+        public async Task<List<ResultUserDto>> GetAllUsers()
+        {
+			return await _client.GetFromJsonAsync<List<ResultUserDto>>("/api/users/GetAllUserList");
+
+		}
+	}
 }

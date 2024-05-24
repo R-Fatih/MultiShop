@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MultiShop.IdentityServer.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -29,5 +30,11 @@ namespace MultiShop.IdentityServer.Controllers
             var user=await _userManager.FindByIdAsync(userClaim.Value);
             return Ok(new { id = user.Id, Name = user.Name, Email = user.Email, Username = user.UserName, Surname = user.Surname });
         }
+        [HttpGet("GetAllUserList")]
+        public async Task<IActionResult> GetAllUserList()
+        {
+			var users =await _userManager.Users.ToListAsync();
+			return Ok(users);
+		}
     }
 }

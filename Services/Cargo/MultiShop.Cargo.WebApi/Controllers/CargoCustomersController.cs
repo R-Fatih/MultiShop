@@ -32,13 +32,13 @@ namespace MultiShop.Cargo.WebApi.Controllers
         [HttpPost]
         public async Task<IActionResult> InsertCargoCustomer(CreateCargoCustomerDto createCargoCustomerDto)
         {
-            await _cargoCustomerService.TInsertAsync(new EntityLayer.Concrete.CargoCustomer { Address=createCargoCustomerDto.Address,City=createCargoCustomerDto.City,District=createCargoCustomerDto.District,Email=createCargoCustomerDto.Email,Name=createCargoCustomerDto.Name,Phone=createCargoCustomerDto.Phone,Surname=createCargoCustomerDto.Surname});
+            await _cargoCustomerService.TInsertAsync(new EntityLayer.Concrete.CargoCustomer { Address=createCargoCustomerDto.Address,City=createCargoCustomerDto.City,District=createCargoCustomerDto.District,Email=createCargoCustomerDto.Email,Name=createCargoCustomerDto.Name,Phone=createCargoCustomerDto.Phone,Surname=createCargoCustomerDto.Surname,UserCustomerId=createCargoCustomerDto.UserCustomerId});
             return Ok("Created succesfully");
         }
         [HttpPost("Update")]    
         public async Task<IActionResult> UpdateCargoCustomer(UpdateCargoCustomerDto updateCargoCustomerDto)
         {
-            await _cargoCustomerService.TUpdateAsync(new EntityLayer.Concrete.CargoCustomer {CargoCustomerId=updateCargoCustomerDto.CargoCustomerId, Address = updateCargoCustomerDto.Address, City = updateCargoCustomerDto.City, District = updateCargoCustomerDto.District, Email = updateCargoCustomerDto.Email, Name = updateCargoCustomerDto.Name, Phone = updateCargoCustomerDto.Phone, Surname = updateCargoCustomerDto.Surname });
+            await _cargoCustomerService.TUpdateAsync(new EntityLayer.Concrete.CargoCustomer {CargoCustomerId=updateCargoCustomerDto.CargoCustomerId, Address = updateCargoCustomerDto.Address, City = updateCargoCustomerDto.City, District = updateCargoCustomerDto.District, Email = updateCargoCustomerDto.Email, Name = updateCargoCustomerDto.Name, Phone = updateCargoCustomerDto.Phone, Surname = updateCargoCustomerDto.Surname,UserCustomerId=updateCargoCustomerDto.UserCustomerId });
             return Ok("Updated succesfully");
         }
         [HttpGet("Delete/{id}")]
@@ -48,5 +48,11 @@ namespace MultiShop.Cargo.WebApi.Controllers
             await _cargoCustomerService.TDeleteAsync(cargoCustomer);
             return Ok("Deleted succesfully");
         }
+        [HttpGet("GetCargoCustomerById")]
+        public async Task<IActionResult> GetCargoCustomerById(string id)
+        {
+			var cargoCustomer =await _cargoCustomerService.TGetCargoCustomerById(id);
+			return Ok(cargoCustomer);
+		}
     }
 }
