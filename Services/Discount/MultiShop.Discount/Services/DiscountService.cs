@@ -56,7 +56,14 @@ namespace MultiShop.Discount.Services
             return await _dapperContext.CreateConnection().QueryFirstOrDefaultAsync<ResultCouponDto>(query, parameters);
         }
 
-        public async Task UpdateCouponAsync(UpdateCouponDto updateCouponDto)
+		public async Task<int> GetDiscountCouponCount()
+		{
+			string query = "SELECT COUNT(*) FROM Coupons";
+            return await _dapperContext.CreateConnection().QueryFirstOrDefaultAsync<int>(query);
+
+		}
+
+		public async Task UpdateCouponAsync(UpdateCouponDto updateCouponDto)
         {
             string query = "UPDATE Coupons SET Code=@Code,Rate=@Rate,IsActive=@IsActive,ValidDate=@ValidDate WHERE CouponId=@CouponId";
             var parameters = new DynamicParameters();

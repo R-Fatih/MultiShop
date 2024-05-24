@@ -54,5 +54,10 @@ namespace MultiShop.Message.Controllers
             await _userMessageService.DeleteMessageAsync(id);
             return Ok("Message deleted.");
         }
+        [HttpGet("GetTotalMessageCount")]
+        public async Task<IActionResult> GetMessageCount()
+        {
+			return Ok(await _userMessageService.GetMessageCountAsync());
+		}
     }
 }
