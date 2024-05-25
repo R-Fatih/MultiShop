@@ -14,5 +14,10 @@ namespace MultiShop.WebUI.Services.DiscountServices
 		{
 			return await _httpClient.GetFromJsonAsync<GetDiscountDetailByCode> ($"Discounts/GetCodeDetailByCode?code={code}");
 		}
-	}
+
+        public async Task<int> GetDiscountCouponCount()
+        {
+            return await _httpClient.GetFromJsonAsync<int>($"Discounts/GetDiscountCouponCount");
+        }
+    }
 }

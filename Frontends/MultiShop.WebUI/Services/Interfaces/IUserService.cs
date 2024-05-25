@@ -7,6 +7,6 @@ namespace MultiShop.WebUI.Services.Interfaces
     {
         Task<UserDetailViewModel> GetUserInfo();
         Task<List<ResultUserDto>> GetAllUsers();
-
+        Task<int> GetUserCount();
 	}
 }

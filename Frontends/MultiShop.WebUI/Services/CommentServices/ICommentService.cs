@@ -10,6 +10,8 @@ namespace MultiShop.WebUI.Services.CatalogServices.CommentServices
         Task DeleteCommentAsync(string CommentId);
         Task<UpdateCommentDto> GetByIdCommentAsync(string CommentId);
         Task<List<ResultCommentDto>> GetCommentsByProductIdAsync(string productId);
-
+        Task<int> GetActiveCommentCountAsync();
+        Task<int> GetPassiveCommentCount();
+        Task<int> GetTotalCommentCount();
 	}
 }

@@ -23,5 +23,10 @@ namespace MultiShop.WebUI.Services.Concrete
 			return await _client.GetFromJsonAsync<List<ResultUserDto>>("/api/users/GetAllUserList");
 
 		}
-	}
+
+        public async Task<int> GetUserCount()
+        {
+            return await _client.GetFromJsonAsync<int>("/api/Statistics");
+        }
+    }
 }
