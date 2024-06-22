@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Localization;
 using MultiShop.WebUI.Handlers;
 using MultiShop.WebUI.Services.BasketServices;
 using MultiShop.WebUI.Services.CargoServices.CargoCompanyServices;
@@ -24,6 +25,7 @@ using MultiShop.WebUI.Services.OrderServices.OrderAddressServices;
 using MultiShop.WebUI.Services.OrderServices.OrderOrderingServices;
 using MultiShop.WebUI.Services.StatisticServices.CatalogStatisticServices;
 using MultiShop.WebUI.Settings;
+using System.Globalization;
 using System.Security.Principal;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -179,7 +181,8 @@ builder.Services.AddHttpClient<IContactService, ContactService>(opt =>
     opt.BaseAddress = new Uri($"{values.OcelotUrl}/{values.Catalog.Path}");
 }).AddHttpMessageHandler<ClientCredentialTokenHandler>();
 
-
+builder.Services.AddLocalization(opt => { opt.ResourcesPath = "Resources"; });
+builder.Services.AddMvc().AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization();
 
 var app = builder.Build();
 
@@ -197,6 +200,20 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+var supportedCultures = new[]
+{
+    new CultureInfo("tr-TR"),
+    new CultureInfo("en-US"),
+    new CultureInfo("de-DE"),
+    new CultureInfo("fr-FR"),
+    new CultureInfo("it-IT"),
+};
+app.UseRequestLocalization(new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture("tr-TR"),
+    SupportedCultures = supportedCultures,
+    SupportedUICultures = supportedCultures
+});
 
 app.MapControllerRoute(
     name: "default",
